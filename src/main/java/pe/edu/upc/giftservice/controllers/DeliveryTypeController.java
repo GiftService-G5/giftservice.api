@@ -2,6 +2,7 @@ package pe.edu.upc.giftservice.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.giftservice.dtos.DeliveryTypeDTO;
 import pe.edu.upc.giftservice.entities.DeliveryType;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/tipo_de_entrega")
+@PreAuthorize("hasAnyAuthority('USUARIO')")
 public class DeliveryTypeController {
     @Autowired
     private IDeliveryTypeService iD;
@@ -24,6 +26,7 @@ public class DeliveryTypeController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAnyAuthority('USUARIO','EMPRENDEDOR', 'ADMIN')")
     public List<DeliveryTypeDTO> list() {
         return iD.list().stream().map(y -> {
             ModelMapper m = new ModelMapper();
@@ -37,6 +40,7 @@ public class DeliveryTypeController {
     }
 
     @GetMapping("/findByName")
+    @PreAuthorize("hasAnyAuthority('USUARIO','EMPRENDEDOR', 'ADMIN')")
     public List<DeliveryTypeDTO> findByName(@RequestParam String nameDelivery){
         return iD.findByNameDeliveryType(nameDelivery).stream().map(y->{
             ModelMapper m=new ModelMapper();

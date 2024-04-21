@@ -2,6 +2,7 @@ package pe.edu.upc.giftservice.servicesimplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pe.edu.upc.giftservice.entities.Category;
 import pe.edu.upc.giftservice.entities.Product;
 import pe.edu.upc.giftservice.repositories.IProductRepository;
 import pe.edu.upc.giftservice.servicesinterfaces.IProductService;
@@ -33,11 +34,14 @@ public class ProductServiceImplement implements IProductService {
     }
 
     @Override
-    public void update(Product product) {
-        pR.save(product);
+    public void update(Integer id, Product product) {
+        Product encontrado = pR.findById(id).orElseThrow();
+        encontrado.setNameProduct(product.getNameProduct());
+        encontrado.setPriceProduct(product.getPriceProduct());
+        encontrado.setDescriptionProduct(product.getDescriptionProduct());
+        encontrado.setStockProduct(product.getStockProduct());
+        pR.save(encontrado);
     }
-
-    @Override
     public List<Product> productByNameCategory(String nombreC) {
         return pR.productByNameCategory(nombreC);
     }

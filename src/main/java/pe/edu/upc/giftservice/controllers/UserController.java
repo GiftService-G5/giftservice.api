@@ -3,6 +3,7 @@ package pe.edu.upc.giftservice.controllers;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.giftservice.dtos.UserDTO;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/users")
+@PreAuthorize("hasAnyAuthority('USUARIO','ADMIN','EMPRENDEDOR')")
 public class UserController {
     @Autowired
     private IUserService uS;

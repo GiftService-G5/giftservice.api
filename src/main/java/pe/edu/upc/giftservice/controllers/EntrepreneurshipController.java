@@ -2,6 +2,7 @@ package pe.edu.upc.giftservice.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.giftservice.dtos.EntrepreneurshipDTO;
 import pe.edu.upc.giftservice.entities.Entrepreneurship;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/entrepreneurships")
+@PreAuthorize("hasAnyAuthority('EMPRENDIMIENTO', 'ADMIN')")
 public class EntrepreneurshipController {
     @Autowired
     private IEntrepreneurshipService iE;
@@ -24,6 +26,7 @@ public class EntrepreneurshipController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAnyAuthority('EMPRENDIMIENTO', 'ADMIN','USUARIO')")
     public List<EntrepreneurshipDTO> list(){
         return iE.list().stream().map(y->{
             ModelMapper m=new ModelMapper();
@@ -44,6 +47,7 @@ public class EntrepreneurshipController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public EntrepreneurshipDTO listById(@PathVariable("id") Long id){
         ModelMapper m=new ModelMapper();
         Entrepreneurship e=iE.getById(id);
