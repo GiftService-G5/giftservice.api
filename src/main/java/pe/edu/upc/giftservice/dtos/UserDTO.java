@@ -6,6 +6,8 @@ public class UserDTO {
     private int idUser;
     private String username;
     private String password;
+    private Boolean enabled;
+
     private String realname;
     private String lastName;
     private String mail;
@@ -84,5 +86,14 @@ public class UserDTO {
 
     public void setCiTy(City ciTy) {
         this.ciTy = ciTy;
+    }
+
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 }

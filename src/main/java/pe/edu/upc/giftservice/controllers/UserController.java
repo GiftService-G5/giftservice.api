@@ -1,7 +1,9 @@
 package pe.edu.upc.giftservice.controllers;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.giftservice.dtos.UserDTO;
 import pe.edu.upc.giftservice.entities.Users;
@@ -15,12 +17,15 @@ import java.util.stream.Collectors;
 public class UserController {
     @Autowired
     private IUserService uS;
-
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     @PostMapping
-    public void insertar(@RequestBody UserDTO userDTO){
-        ModelMapper m=new ModelMapper();
-        Users us=m.map(userDTO, Users.class);
-        uS.insert(us);
+    public void registrar(@RequestBody UserDTO dto) {
+        ModelMapper m = new ModelMapper();
+        Users u = m.map(dto, Users.class);
+        String encodedPassword = passwordEncoder.encode(u.getPassword());
+        u.setPassword(encodedPassword);
+        uS.insert(u);
     }
 
     @GetMapping
@@ -33,4 +38,17 @@ public class UserController {
 
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id){ uS.delete(id);}
+
+    @PutMapping
+    public void modificar(@RequestBody UserDTO dto) {
+        ModelMapper m = new ModelMapper();
+        Users u = m.map(dto, Users.class);
+        uS.insert(u);
+    }
+    @GetMapping("/{id}")
+    public UserDTO listarId(@PathVariable("id") Integer id) {
+        ModelMapper m = new ModelMapper();
+        UserDTO dto = m.map(uS.listId(id), UserDTO.class);
+        return dto;
+    }
 }

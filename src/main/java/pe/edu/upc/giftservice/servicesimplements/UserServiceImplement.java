@@ -27,4 +27,9 @@ public class UserServiceImplement implements IUserService {
     public List<Users> list() {
         return usR.findAll();
     }
+
+    @Override
+    public Users listId(Integer idUsuario){
+        return usR.findById(idUsuario).orElse(new Users());
+    }
 }

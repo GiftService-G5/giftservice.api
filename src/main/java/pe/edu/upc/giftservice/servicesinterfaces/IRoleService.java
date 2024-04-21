@@ -9,4 +9,5 @@ public interface IRoleService {
     public void insert(Role rle);
     public List<Role> list();
     public void delete(int id);
+    public Role listId(Integer idRol);
 }

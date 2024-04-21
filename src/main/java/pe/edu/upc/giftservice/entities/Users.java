@@ -2,6 +2,8 @@ package pe.edu.upc.giftservice.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "UserWeb")
 public class Users {
@@ -12,6 +14,8 @@ public class Users {
     private String username;
     @Column(name = "password", nullable = false, length = 18)
     private String password;
+    private Boolean enabled;
+
     @Column(name = "realname", nullable = false, length = 50)
     private String realname;
     @Column(name = "lastName", nullable = false, length = 50)
@@ -27,19 +31,25 @@ public class Users {
     @JoinColumn(name = "cityId")
     private City ciTy;
 
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private List<Role> roles;
+
     public Users() {
     }
 
-    public Users(int idUser, String username, String password, String realname, String lastName, String mail, int contact, String address, City ciTy) {
+    public Users(int idUser, String username, String password, Boolean enabled, String realname, String lastName, String mail, int contact, String address, City ciTy, List<Role> roles) {
         this.idUser = idUser;
         this.username = username;
         this.password = password;
+        this.enabled = enabled;
         this.realname = realname;
         this.lastName = lastName;
         this.mail = mail;
         this.contact = contact;
         this.address = address;
         this.ciTy = ciTy;
+        this.roles = roles;
     }
 
     public int getIdUser() {
@@ -64,6 +74,14 @@ public class Users {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 
     public String getRealname() {
@@ -112,6 +130,14 @@ public class Users {
 
     public void setCiTy(City ciTy) {
         this.ciTy = ciTy;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 }
 

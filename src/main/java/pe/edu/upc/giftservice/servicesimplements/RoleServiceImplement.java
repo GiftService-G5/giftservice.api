@@ -21,5 +21,10 @@ public class RoleServiceImplement implements IRoleService{
         rleR.deleteById(id);
     }
 
+    @Override
+    public Role listId(Integer idRol) {
+        return rleR.findById(idRol).orElse(new Role());
+    }
+
 }
 

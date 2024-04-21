@@ -33,4 +33,11 @@ public class RoleController {
 
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id){ iR.delete(id);}
+
+    @GetMapping("/{id}")
+    public RoleDTO listarId(@PathVariable("id") Integer id) {
+        ModelMapper m = new ModelMapper();
+        RoleDTO dto = m.map(iR.listId(id), RoleDTO.class);
+        return dto;
+    }
 }
