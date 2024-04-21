@@ -1,12 +1,12 @@
 package pe.edu.upc.giftservice.dtos;
 
-import pe.edu.upc.giftservice.entities.User;
+import pe.edu.upc.giftservice.entities.Users;
 
 public class RoleDTO {
     private int idRole;
     private String RoleName;
 
-    private User usEr;
+    private Users usEr;
 
     public int getIdRole() {
         return idRole;
@@ -24,11 +24,11 @@ public class RoleDTO {
         RoleName = roleName;
     }
 
-    public User getUsEr() {
+    public Users getUsEr() {
         return usEr;
     }
 
-    public void setUsEr(User usEr) {
+    public void setUsEr(Users usEr) {
         this.usEr = usEr;
     }
 }

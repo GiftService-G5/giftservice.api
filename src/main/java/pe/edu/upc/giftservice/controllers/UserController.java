@@ -4,14 +4,14 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.giftservice.dtos.UserDTO;
-import pe.edu.upc.giftservice.entities.User;
+import pe.edu.upc.giftservice.entities.Users;
 import pe.edu.upc.giftservice.servicesinterfaces.IUserService;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/Usuarios")
+@RequestMapping("/users")
 public class UserController {
     @Autowired
     private IUserService uS;
@@ -19,7 +19,7 @@ public class UserController {
     @PostMapping
     public void insertar(@RequestBody UserDTO userDTO){
         ModelMapper m=new ModelMapper();
-        User us=m.map(userDTO, User.class);
+        Users us=m.map(userDTO, Users.class);
         uS.insert(us);
     }
 

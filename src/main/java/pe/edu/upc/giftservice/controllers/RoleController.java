@@ -30,4 +30,7 @@ public class RoleController {
             return m.map(y, RoleDTO.class);
         }).collect(Collectors.toList());
     }
+
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable("id") Integer id){ iR.delete(id);}
 }

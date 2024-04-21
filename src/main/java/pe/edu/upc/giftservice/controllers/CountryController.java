@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("paises")
+@RequestMapping("countries")
 public class CountryController {
     @Autowired
     private ICountryService iC;
