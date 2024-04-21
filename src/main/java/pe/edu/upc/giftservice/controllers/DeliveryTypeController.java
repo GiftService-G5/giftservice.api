@@ -36,4 +36,19 @@ public class DeliveryTypeController {
         iD.delete(id);
     }
 
+    @GetMapping("/findByName")
+    public List<DeliveryTypeDTO> findByName(@RequestParam String nameDelivery){
+        return iD.findByNameDeliveryType(nameDelivery).stream().map(y->{
+            ModelMapper m=new ModelMapper();
+            return m.map(y,DeliveryTypeDTO.class);
+        }).collect(Collectors.toList());
+    }
+
+    @PutMapping("/{id}")
+    public void Update (@PathVariable Integer id, @RequestBody DeliveryTypeDTO deliveryTypeDTO){
+        ModelMapper m=new ModelMapper();
+        DeliveryType d=m.map(deliveryTypeDTO,DeliveryType.class);
+        iD.update(id,d);
+    }
+
 }

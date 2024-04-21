@@ -28,4 +28,16 @@ public class DeliveryTypeServiceImplement implements IDeliveryTypeService {
     public void delete(int id) {
         dtR.deleteById(id);
     }
+
+    @Override
+    public List<DeliveryType> findByNameDeliveryType(String nameDelivery) {
+        return dtR.findByNameDeliveryType(nameDelivery);
+    }
+
+    @Override
+    public void update(Integer id, DeliveryType deliveryType) {
+        DeliveryType change = dtR.findById(id).orElseThrow();
+        change.setNameDeliveryType(deliveryType.getNameDeliveryType());
+        dtR.save(change);
+    }
 }
