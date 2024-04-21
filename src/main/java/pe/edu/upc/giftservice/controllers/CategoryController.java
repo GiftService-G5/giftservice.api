@@ -2,6 +2,7 @@ package pe.edu.upc.giftservice.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.gifservice.dtos.CategoryDTO;
 import pe.edu.upc.giftservice.entities.Category;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/category")
+@PreAuthorize("hasAnyAuthority('EMPRENDEDOR')")
 public class CategoryController {
     @Autowired
     private ICategoryService cS;
@@ -40,6 +42,7 @@ public class CategoryController {
         return m.map(category, CategoryDTO.class);
     }
     @GetMapping
+    @PreAuthorize("hasAnyAuthority('EMPRENDEDOR','ADMIN','USUARIO')")
     public List<CategoryDTO> list(){
         ModelMapper m = new ModelMapper();
         return cS.list().stream().map( category-> m.map(category,CategoryDTO.class)).collect(Collectors.toList());

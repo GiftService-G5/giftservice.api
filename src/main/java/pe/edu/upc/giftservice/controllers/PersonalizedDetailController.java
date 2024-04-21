@@ -2,6 +2,7 @@ package pe.edu.upc.giftservice.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.giftservice.dtos.PersonalizedDetailDTO;
 import pe.edu.upc.giftservice.entities.PersonalizedDetail;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/PersonalizedDetailController")
+@PreAuthorize("hasAnyAuthority('EMPRENDEDOR')")
 public class PersonalizedDetailController {
     @Autowired
     private IPersonalizedDetailService ipS;
@@ -23,6 +25,7 @@ public class PersonalizedDetailController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAnyAuthority('EMPRENDEDOR','ADMIN', 'USUARIO')")
     public List<PersonalizedDetailDTO> listar(){
         return ipS.list().stream().map(y->{
             ModelMapper m = new ModelMapper();

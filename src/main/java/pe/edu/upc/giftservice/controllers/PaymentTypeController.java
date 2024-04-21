@@ -2,6 +2,7 @@ package pe.edu.upc.giftservice.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.giftservice.dtos.PaymentTypeDTO;
 import pe.edu.upc.giftservice.entities.PaymentType;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/tipo_pago")
+@PreAuthorize("hasAnyAuthority('USUARIO')")
 public class PaymentTypeController {
     @Autowired
     private IPaymentTypeService iP;
@@ -24,6 +26,7 @@ public class PaymentTypeController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAnyAuthority('USUARIO', 'ADMIN')")
     public List<PaymentTypeDTO> list(){
         return  iP.list().stream().map(y->{
             ModelMapper m=new ModelMapper();

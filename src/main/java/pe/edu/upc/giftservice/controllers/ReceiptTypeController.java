@@ -2,6 +2,7 @@ package pe.edu.upc.giftservice.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.giftservice.dtos.ReceiptTypeDTO;
 import pe.edu.upc.giftservice.entities.ReceiptType;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/tipo_comprobante_pago")
+@PreAuthorize("hasAnyAuthority('USUARIO')")
 public class ReceiptTypeController {
     @Autowired
     private IReceiptTypeService iR;
@@ -24,6 +26,7 @@ public class ReceiptTypeController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAnyAuthority('USUARIO','ADMIN')")
     public List<ReceiptTypeDTO> list(){
         return  iR.list().stream().map(y->{
             ModelMapper m=new ModelMapper();

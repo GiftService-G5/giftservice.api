@@ -3,6 +3,7 @@ package pe.edu.upc.giftservice.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.giftservice.dtos.ProductDTO;
 import pe.edu.upc.giftservice.entities.Product;
@@ -13,6 +14,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/ProductController")
+@PreAuthorize("hasAnyAuthority('EMPRENDEDOR')")
 public class ProductController {
     @Autowired
     private IProductService ipS;
@@ -25,6 +27,7 @@ public class ProductController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAnyAuthority('USUARIO', 'EMPRENDEDOR', 'ADMIN')")
     public List<ProductDTO> list(){
         return ipS.list().stream().map(y->{
             ModelMapper m=new ModelMapper();
@@ -46,24 +49,37 @@ public class ProductController {
     }
 
     @GetMapping("/buscarPorCategoria")
+    @PreAuthorize("hasAnyAuthority('USUARIO', 'EMPRENDEDOR','ADMIN')")
     public List<ProductDTO> productosPorCategoria(@RequestParam String nombreC){
         return ipS.productByNameCategory(nombreC).stream().map(y->{
             ModelMapper m=new ModelMapper();
             return m.map(y, ProductDTO.class);
         }).collect(Collectors.toList());
     }
+
+
     @GetMapping("/buscarPorEmprendimiento")
+    @PreAuthorize("hasAnyAuthority('USUARIO', 'EMPRENDEDOR','ADMIN')")
     public List<ProductDTO> productosPorEmprendimiento(@RequestParam String nombreE){
         return ipS.productByNameEntrepreneurship(nombreE).stream().map(y->{
             ModelMapper m=new ModelMapper();
             return m.map(y, ProductDTO.class);
         }).collect(Collectors.toList());
     }
+
     @GetMapping("/buscarPorNombreProducto")
+    @PreAuthorize("hasAnyAuthority('USUARIO', 'EMPRENDEDOR','ADMIN')")
     public List<ProductDTO> productosPorNombre(@RequestParam String nombreP){
         return ipS.productByName(nombreP).stream().map(y->{
             ModelMapper m=new ModelMapper();
             return m.map(y, ProductDTO.class);
         }).collect(Collectors.toList());
     }
+    @PutMapping("/UpdateStock/{id}")
+    public void Update (@PathVariable Integer id, @RequestBody ProductDTO productDTO){
+        ModelMapper m=new ModelMapper();
+        Product p=m.map(productDTO,Product.class);
+        ipS.update(id,p);
+    }
 }
+
