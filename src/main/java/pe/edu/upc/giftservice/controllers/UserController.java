@@ -53,4 +53,14 @@ public class UserController {
         UserDTO dto = m.map(uS.listId(id), UserDTO.class);
         return dto;
     }
+
+    @GetMapping("/ContarPorRol")
+    public int findByNameRole(@RequestParam String name_role){
+        return uS.findByNameRole(name_role);
+    }
+
+    @GetMapping("/ContarPorPais")
+    public int findByNameCountry(@RequestParam String name_country){
+        return uS.findByNameCountry(name_country);
+    }
 }

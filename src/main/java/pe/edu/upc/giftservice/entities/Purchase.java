@@ -27,6 +27,9 @@ public class Purchase {
     @ManyToOne
     @JoinColumn(name = "Receipt_Type_id")
     private ReceiptType receiptTypes;
+    @ManyToOne
+    @JoinColumn(name = "Users_id")
+    private Users users;
 
 
     public Purchase() {

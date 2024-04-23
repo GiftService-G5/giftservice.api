@@ -10,16 +10,13 @@ public class Category {
     private Long id;
     @Column(name = "nameCategory", nullable = false)
     private String nameCategory;
-    @Column(name = "typeCategory", nullable = false)
-    private String typeCategory;
 
     public Category() {
     }
 
-    public Category(Long id, String nameCategory, String typeCategory) {
+    public Category(Long id, String nameCategory) {
         this.id = id;
         this.nameCategory = nameCategory;
-        this.typeCategory = typeCategory;
     }
 
     public Long getId() {
@@ -36,13 +33,5 @@ public class Category {
 
     public void setNameCategory(String nameCategory) {
         this.nameCategory = nameCategory;
-    }
-
-    public String getTypeCategory() {
-        return typeCategory;
-    }
-
-    public void setTypeCategory(String typeCategory) {
-        this.typeCategory = typeCategory;
     }
 }

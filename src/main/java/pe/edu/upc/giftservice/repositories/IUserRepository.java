@@ -16,8 +16,22 @@ public interface IUserRepository extends JpaRepository<Users, Integer> {
     @Query("select count(u.username) from Users u where u.username =:username")
     public int buscarUsername(@Param("username") String nombre);
 
+    @Query(value = "SELECT COUNT(u.id_user) AS Users\n" +
+            "FROM user_web u \n" +
+            "INNER JOIN public.role r ON r.user_id = u.id_user \n" +
+            "WHERE r.name_role = ?1",nativeQuery = true)
+    public int findByNameRole( String name_role);
+    @Query(value = "SELECT COUNT(u.id_user) AS Users \n" +
+            "FROM user_web u \n" +
+            "INNER JOIN city ci ON u.city_id = ci.id_city \n" +
+            "INNER JOIN country co ON ci.country_id = co.id_country \n" +
+            "WHERE co.name_country = ?1 ",nativeQuery = true)
+    public int findByNameCountry( String name_country);
+
     @Transactional
     @Modifying
     @Query(value = "insert into roles (rol, user_id) VALUES (:rol, :user_id)", nativeQuery = true)
     public void insRol(@Param("rol") String authority, @Param("user_id") Long user_id);
+
+
 }

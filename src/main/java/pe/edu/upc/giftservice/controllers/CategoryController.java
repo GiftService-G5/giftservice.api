@@ -4,7 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.gifservice.dtos.CategoryDTO;
+import pe.edu.upc.giftservice.dtos.CategoryDTO;
 import pe.edu.upc.giftservice.entities.Category;
 import pe.edu.upc.giftservice.servicesinterfaces.ICategoryService;
 

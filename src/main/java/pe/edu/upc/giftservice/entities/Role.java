@@ -9,8 +9,8 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idRole;
 
-    @Column(name = "RoleName", nullable = false, length = 20)
-    private String RoleName;
+    @Column(name = "nameRole", nullable = false, length = 20)
+    private String nameRole;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -19,9 +19,9 @@ public class Role {
     public Role(){
     }
 
-    public Role(int idRole, String roleName, Users usEr) {
+    public Role(int idRole, String nameRole, Users usEr) {
         this.idRole = idRole;
-        RoleName = roleName;
+        this.nameRole = nameRole;
         this.usEr = usEr;
     }
 
@@ -33,12 +33,12 @@ public class Role {
         this.idRole = idRole;
     }
 
-    public String getRoleName() {
-        return RoleName;
+    public String getNameRole() {
+        return nameRole;
     }
 
-    public void setRoleName(String roleName) {
-        RoleName = roleName;
+    public void setNameRole(String nameRole) {
+        this.nameRole = nameRole;
     }
 
     public Users getUsEr() {

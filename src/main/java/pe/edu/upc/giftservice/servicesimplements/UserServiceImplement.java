@@ -29,6 +29,16 @@ public class UserServiceImplement implements IUserService {
     }
 
     @Override
+    public int findByNameRole(String name_role) {
+        return usR.findByNameRole(name_role);
+    }
+
+    @Override
+    public int findByNameCountry(String name_country) {
+        return usR.findByNameCountry(name_country);
+    }
+
+    @Override
     public Users listId(Integer idUsuario){
         return usR.findById(idUsuario).orElse(new Users());
     }

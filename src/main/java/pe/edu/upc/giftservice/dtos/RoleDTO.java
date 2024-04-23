@@ -4,7 +4,7 @@ import pe.edu.upc.giftservice.entities.Users;
 
 public class RoleDTO {
     private int idRole;
-    private String RoleName;
+    private String nameRole;
 
     private Users usEr;
 
@@ -16,12 +16,12 @@ public class RoleDTO {
         this.idRole = idRole;
     }
 
-    public String getRoleName() {
-        return RoleName;
+    public String getNameRole() {
+        return nameRole;
     }
 
-    public void setRoleName(String roleName) {
-        RoleName = roleName;
+    public void setNameRole(String nameRole) {
+        this.nameRole = nameRole;
     }
 
     public Users getUsEr() {

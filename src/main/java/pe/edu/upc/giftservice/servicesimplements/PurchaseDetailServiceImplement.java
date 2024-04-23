@@ -28,7 +28,6 @@ public class PurchaseDetailServiceImplement implements IPurchaseDetailService {
         return pdR.findById(id).get();
     }
 
-
     @Override
     public void update(PurchaseDetail PurchaseDetail) {
         pdR.save(PurchaseDetail);
@@ -37,6 +36,16 @@ public class PurchaseDetailServiceImplement implements IPurchaseDetailService {
     @Override
     public void delete(int id) {
         pdR.deleteById(id);
+    }
+
+    @Override
+    public List<String[]> quantityPurchaseByEntrepreneurship() {
+        return pdR.quantityPurchaseByEntrepreneurship();
+    }
+
+    @Override
+    public List<String[]> TotalAmountByEntrepreneurship() {
+        return pdR.TotalAmountByEntrepreneurship();
     }
 
 }

@@ -9,4 +9,7 @@ public interface IUserService {
     public void delete(int id);
     public Users listId(Integer idUsuario);
     public List<Users> list();
+
+    public int findByNameRole(String name_role);
+    public int findByNameCountry( String name_country);
 }
