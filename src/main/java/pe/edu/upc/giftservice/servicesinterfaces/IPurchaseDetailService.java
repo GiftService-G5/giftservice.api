@@ -2,6 +2,7 @@ package pe.edu.upc.giftservice.servicesinterfaces;
 
 import pe.edu.upc.giftservice.entities.PurchaseDetail;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface IPurchaseDetailService {
@@ -12,5 +13,7 @@ public interface IPurchaseDetailService {
     public void delete(int id);
     public List<String[]> quantityPurchaseByEntrepreneurship();
     public List<String[]> TotalAmountByEntrepreneurship();
+    public int sumTotalProductsByPurchaseDate(LocalDate fechaCompra);
+    public List<Object[]> filterBestSellerProductDescent();
 
 }

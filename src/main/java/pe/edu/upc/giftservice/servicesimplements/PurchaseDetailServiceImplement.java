@@ -6,6 +6,7 @@ import pe.edu.upc.giftservice.entities.PurchaseDetail;
 import pe.edu.upc.giftservice.repositories.IPurchaseDetailRepository;
 import pe.edu.upc.giftservice.servicesinterfaces.IPurchaseDetailService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -46,6 +47,16 @@ public class PurchaseDetailServiceImplement implements IPurchaseDetailService {
     @Override
     public List<String[]> TotalAmountByEntrepreneurship() {
         return pdR.TotalAmountByEntrepreneurship();
+    }
+
+    @Override
+    public int sumTotalProductsByPurchaseDate(LocalDate fechaCompra) {
+        return pdR.sumTotalProductsByPurchaseDate(fechaCompra);
+    }
+
+    @Override
+    public List<Object[]> filterBestSellerProductDescent() {
+        return pdR.filterBestSellerProductDescent();
     }
 
 }

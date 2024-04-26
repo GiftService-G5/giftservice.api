@@ -10,6 +10,7 @@ import pe.edu.upc.giftservice.dtos.TotalAmountByEntrepreneurshipDTO;
 import pe.edu.upc.giftservice.entities.PurchaseDetail;
 import pe.edu.upc.giftservice.servicesinterfaces.IPurchaseDetailService;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -87,4 +88,15 @@ public class PurchaseDetailController {
         return dtoLista;
     }
 
+    @GetMapping("/SumaDeCantidadesPorFechaCompra")
+    @PreAuthorize("hasAnyAuthority('EMPRENDEDOR', 'ADMIN')")
+    public int sumAmountByPurchaseDate(@RequestParam LocalDate fechaCompra){
+        return pdS.sumTotalProductsByPurchaseDate(fechaCompra);
+    }
+
+    @GetMapping("/TotalProductosVendidosDescent")
+    @PreAuthorize("hasAnyAuthority('EMPRENDEDOR', 'ADMIN', 'USUARIO')")
+    public List<Object[]> filterBestSellerDescent() {
+        return pdS.filterBestSellerProductDescent();
+    }
 }
