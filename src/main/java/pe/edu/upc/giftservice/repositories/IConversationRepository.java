@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface IConversationRepository extends JpaRepository<Conversation,Integer> {
     @Query(value = "SELECT date_conversation,text_conversation,entrepreneurship_id,user_id FROM public.conversation \n" +
-            "WHERE  entrepreneurship_id = 1 AND user_id = 1 \n" +
+            "WHERE  entrepreneurship_id = ?1 AND user_id = ?2 \n" +
             "ORDER BY date_conversation ASC",nativeQuery = true)
     public List<Conversation> findAllByUserEntrepre(int id_user,int id_entre);
 

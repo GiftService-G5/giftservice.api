@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.giftservice.dtos.PersonalizedDetailDTO;
+import pe.edu.upc.giftservice.dtos.UserDTO;
 import pe.edu.upc.giftservice.entities.PersonalizedDetail;
+import pe.edu.upc.giftservice.entities.Users;
 import pe.edu.upc.giftservice.servicesinterfaces.IPersonalizedDetailService;
 
 import java.util.List;
@@ -42,6 +44,12 @@ public class PersonalizedDetailController {
         ModelMapper m= new ModelMapper();
         PersonalizedDetailDTO dto = m.map(ipS.listId(id), PersonalizedDetailDTO.class);
         return dto;
+    }
+    @PutMapping
+    public void modificar(@RequestBody PersonalizedDetailDTO dto) {
+        ModelMapper m = new ModelMapper();
+        PersonalizedDetail u = m.map(dto, PersonalizedDetail.class);
+        ipS.insert(u);
     }
 
 }

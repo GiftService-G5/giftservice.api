@@ -33,4 +33,11 @@ public class CityController {
 
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id){ icS.delete(id);}
+
+    @PutMapping
+    public void modificar(@RequestBody CityDTO dto) {
+        ModelMapper m = new ModelMapper();
+        City u = m.map(dto, City.class);
+        icS.insert(u);
+    }
 }

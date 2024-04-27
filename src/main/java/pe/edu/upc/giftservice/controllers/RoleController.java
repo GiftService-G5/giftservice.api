@@ -4,7 +4,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.giftservice.dtos.PersonalizedDetailDTO;
 import pe.edu.upc.giftservice.dtos.RoleDTO;
+import pe.edu.upc.giftservice.entities.PersonalizedDetail;
 import pe.edu.upc.giftservice.entities.Role;
 import pe.edu.upc.giftservice.servicesinterfaces.IRoleService;
 
@@ -41,5 +43,12 @@ public class RoleController {
         ModelMapper m = new ModelMapper();
         RoleDTO dto = m.map(iR.listId(id), RoleDTO.class);
         return dto;
+    }
+
+    @PutMapping
+    public void modificar(@RequestBody RoleDTO dto) {
+        ModelMapper m = new ModelMapper();
+        Role u = m.map(dto, Role.class);
+        iR.insert(u);
     }
 }

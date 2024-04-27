@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.giftservice.dtos.NotificationDTO;
+import pe.edu.upc.giftservice.dtos.PaymentTypeDTO;
 import pe.edu.upc.giftservice.entities.Notification;
+import pe.edu.upc.giftservice.entities.PaymentType;
 import pe.edu.upc.giftservice.servicesinterfaces.INotificationService;
 
 import java.util.List;
@@ -34,4 +36,11 @@ public class NotificationController {
 
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id){ iN.delete(id);}
+
+    @PutMapping
+    public void modificar(@RequestBody NotificationDTO dto) {
+        ModelMapper m = new ModelMapper();
+        Notification u = m.map(dto, Notification.class);
+        iN.insert(u);
+    }
 }

@@ -34,4 +34,10 @@ public class CountryController {
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id){ iC.delete(id);}
 
+    @PutMapping
+    public void modificar(@RequestBody CountryDTO dto) {
+        ModelMapper m = new ModelMapper();
+        Country u = m.map(dto, Country.class);
+        iC.insert(u);
+    }
 }

@@ -38,4 +38,10 @@ public class PaymentTypeController {
         iP.delete(id);
     }
 
+    @PutMapping
+    public void modificar(@RequestBody PaymentTypeDTO dto) {
+        ModelMapper m = new ModelMapper();
+        PaymentType u = m.map(dto, PaymentType.class);
+        iP.insert(u);
+    }
 }

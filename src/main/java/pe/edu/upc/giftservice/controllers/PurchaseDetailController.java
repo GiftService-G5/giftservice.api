@@ -4,11 +4,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.giftservice.dtos.PurchaseByEntrepreneurshipDTO;
-import pe.edu.upc.giftservice.dtos.PurchaseDetailDTO;
-import pe.edu.upc.giftservice.dtos.RankingCategoryPurchaseDTO;
-import pe.edu.upc.giftservice.dtos.TotalAmountByEntrepreneurshipDTO;
+import pe.edu.upc.giftservice.dtos.*;
 import pe.edu.upc.giftservice.entities.PurchaseDetail;
+import pe.edu.upc.giftservice.entities.ReceiptType;
 import pe.edu.upc.giftservice.servicesinterfaces.IPurchaseDetailService;
 
 import java.time.LocalDate;
@@ -105,5 +103,11 @@ public class PurchaseDetailController {
             dtoLista.add(dto);
         }
         return dtoLista;
+    }
+    @PutMapping
+    public void modificar(@RequestBody PurchaseDetailDTO dto) {
+        ModelMapper m = new ModelMapper();
+        PurchaseDetail u = m.map(dto, PurchaseDetail.class);
+        pdS.insert(u);
     }
 }
