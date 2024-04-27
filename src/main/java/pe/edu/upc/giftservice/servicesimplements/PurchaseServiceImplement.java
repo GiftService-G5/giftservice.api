@@ -27,6 +27,10 @@ class PurchaseServiceImplement implements IPurchaseService {
     public void delete(int id) {
         iP.deleteById(id);
     }
+    @Override
+    public void update(Purchase purchase) {
+        iP.save(purchase);
+    }
 
     @Override
     public List<String[]> QuantityByTypeDelivery() {

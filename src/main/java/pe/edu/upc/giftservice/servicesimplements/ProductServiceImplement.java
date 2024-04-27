@@ -2,7 +2,6 @@ package pe.edu.upc.giftservice.servicesimplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pe.edu.upc.giftservice.entities.Category;
 import pe.edu.upc.giftservice.entities.Product;
 import pe.edu.upc.giftservice.repositories.IProductRepository;
 import pe.edu.upc.giftservice.servicesinterfaces.IProductService;

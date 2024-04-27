@@ -58,6 +58,7 @@ public class EntrepreneurshipController {
     }
 
     @GetMapping("/quantityReviewsByProduct/{id}")
+    @PreAuthorize("hasAnyAuthority('EMPRENDIMIENTO', 'ADMIN','USUARIO')")
     public List<QuantityReviewDTO> quantityReviewsByProduct(
             @PathVariable("id") Long id
     ) {
@@ -73,6 +74,7 @@ public class EntrepreneurshipController {
     }
 
     @GetMapping("/top3personalized/{id}")
+    @PreAuthorize("hasAnyAuthority('EMPRENDIMIENTO', 'ADMIN','USUARIO')")
     public List<PersonalizedEntrepreneurshipDTO> findTop3PersonalizationsByEntrepreneurshipId(
             @PathVariable("id") Long id
     ) {

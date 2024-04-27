@@ -1,7 +1,5 @@
 package pe.edu.upc.giftservice.dtos;
 
-import jakarta.persistence.Column;
-
 public class DeliveryTypeDTO {
     private int idDeliveryType;
     private String nameDeliveryType;

@@ -1,7 +1,5 @@
 package pe.edu.upc.giftservice.servicesinterfaces;
 
-import org.springframework.data.repository.query.Param;
-import pe.edu.upc.giftservice.entities.Entrepreneurship;
 import pe.edu.upc.giftservice.entities.Product;
 
 import java.util.List;

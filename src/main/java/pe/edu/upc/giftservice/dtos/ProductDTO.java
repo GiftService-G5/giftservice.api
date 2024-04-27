@@ -1,8 +1,5 @@
 package pe.edu.upc.giftservice.dtos;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import pe.edu.upc.giftservice.entities.Category;
 import pe.edu.upc.giftservice.entities.Entrepreneurship;
 import pe.edu.upc.giftservice.entities.PersonalizedDetail;

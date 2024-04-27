@@ -5,9 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.giftservice.dtos.LowScoreOneToThree;
-import pe.edu.upc.giftservice.dtos.ProductDTO;
 import pe.edu.upc.giftservice.dtos.ReviewsDTO;
-import pe.edu.upc.giftservice.entities.Product;
 import pe.edu.upc.giftservice.entities.Reviews;
 import pe.edu.upc.giftservice.servicesinterfaces.IReviewsService;
 

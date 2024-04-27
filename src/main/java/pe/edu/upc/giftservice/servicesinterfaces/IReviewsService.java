@@ -1,6 +1,5 @@
 package pe.edu.upc.giftservice.servicesinterfaces;
 
-import pe.edu.upc.giftservice.entities.PersonalizedDetail;
 import pe.edu.upc.giftservice.entities.Reviews;
 
 import java.util.List;

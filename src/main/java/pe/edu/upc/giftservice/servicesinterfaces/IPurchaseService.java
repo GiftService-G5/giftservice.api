@@ -10,6 +10,8 @@ public interface IPurchaseService {
     public List<Purchase> list();
 
     public void delete(int id);
+    public void update(Purchase purchase);
+
 
     public List<String[]> QuantityByTypeDelivery ();
 

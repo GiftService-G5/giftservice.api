@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/category")
-@PreAuthorize("hasAnyAuthority('EMPRENDEDOR')")
+@PreAuthorize("hasAnyAuthority('EMPRENDIMIENTO')")
 public class CategoryController {
     @Autowired
     private ICategoryService cS;
@@ -42,7 +42,7 @@ public class CategoryController {
         return m.map(category, CategoryDTO.class);
     }
     @GetMapping
-    @PreAuthorize("hasAnyAuthority('EMPRENDEDOR','ADMIN','USUARIO')")
+    @PreAuthorize("hasAnyAuthority('EMPRENDIMIENTO','ADMIN','USUARIO')")
     public List<CategoryDTO> list(){
         ModelMapper m = new ModelMapper();
         return cS.list().stream().map( category-> m.map(category,CategoryDTO.class)).collect(Collectors.toList());

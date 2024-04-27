@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/tipo_de_entrega")
-@PreAuthorize("hasAnyAuthority('USUARIO')")
+@PreAuthorize("hasAnyAuthority('EMPRENDIMIENTO')")
 public class DeliveryTypeController {
     @Autowired
     private IDeliveryTypeService iD;
@@ -26,7 +26,7 @@ public class DeliveryTypeController {
     }
 
     @GetMapping
-    @PreAuthorize("hasAnyAuthority('USUARIO','EMPRENDEDOR', 'ADMIN')")
+    @PreAuthorize("hasAnyAuthority('USUARIO','EMPRENDIMIENTO', 'ADMIN')")
     public List<DeliveryTypeDTO> list() {
         return iD.list().stream().map(y -> {
             ModelMapper m = new ModelMapper();
@@ -40,7 +40,7 @@ public class DeliveryTypeController {
     }
 
     @GetMapping("/findByName")
-    @PreAuthorize("hasAnyAuthority('USUARIO','EMPRENDEDOR', 'ADMIN')")
+    @PreAuthorize("hasAnyAuthority('USUARIO','EMPRENDIMIENTO', 'ADMIN')")
     public List<DeliveryTypeDTO> findByName(@RequestParam String nameDelivery){
         return iD.findByNameDeliveryType(nameDelivery).stream().map(y->{
             ModelMapper m=new ModelMapper();

@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/Purchase")
-@PreAuthorize("hasAnyAuthority('USUARIO','EMPRENDEDOR', 'ADMIN')")
+@PreAuthorize("hasAnyAuthority('USUARIO','EMPRENDIMIENTO', 'ADMIN')")
 public class PurchaseController {
     @Autowired
     private IPurchaseService pS;
@@ -41,7 +41,13 @@ public class PurchaseController {
     public void delete(@PathVariable("id") Integer id) {
         pS.delete(id);
     }
-
+    @PutMapping
+    @PreAuthorize("hasAnyAuthority('EMPRENDIMIENTO', 'ADMIN')")
+    public void update(@RequestBody PurchaseDTO purchaseDTO) {
+        ModelMapper m = new ModelMapper();
+        Purchase e = m.map(purchaseDTO, Purchase.class);
+        pS.update(e);
+    }
     @GetMapping("CantidadDeTipoDeDeliveryDelTotalDeCompras")
     @PreAuthorize("hasAnyAuthority('USUARIO','EMPRENDIMIENTO', 'ADMIN')")
     public List<QuantityByTypeDeliveryDTO> cantidadPorTipoDeEntrega(){

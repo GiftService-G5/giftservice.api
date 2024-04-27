@@ -1,7 +1,6 @@
 package pe.edu.upc.giftservice.servicesinterfaces;
 
 import pe.edu.upc.giftservice.entities.Conversation;
-import pe.edu.upc.giftservice.entities.Country;
 
 import java.util.List;
 

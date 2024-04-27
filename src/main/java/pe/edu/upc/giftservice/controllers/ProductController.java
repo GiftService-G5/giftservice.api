@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/ProductController")
-@PreAuthorize("hasAnyAuthority('EMPRENDEDOR')")
+@PreAuthorize("hasAnyAuthority('EMPRENDIMIENTO')")
 public class ProductController {
     @Autowired
     private IProductService ipS;
@@ -27,7 +27,7 @@ public class ProductController {
     }
 
     @GetMapping
-    @PreAuthorize("hasAnyAuthority('USUARIO', 'EMPRENDEDOR', 'ADMIN')")
+    @PreAuthorize("hasAnyAuthority('USUARIO', 'EMPRENDIMIENTO', 'ADMIN')")
     public List<ProductDTO> list(){
         return ipS.list().stream().map(y->{
             ModelMapper m=new ModelMapper();
@@ -49,7 +49,7 @@ public class ProductController {
     }
 
     @GetMapping("/buscarPorCategoria")
-    @PreAuthorize("hasAnyAuthority('USUARIO', 'EMPRENDEDOR','ADMIN')")
+    @PreAuthorize("hasAnyAuthority('USUARIO', 'EMPRENDIMIENTO','ADMIN')")
     public List<ProductDTO> productosPorCategoria(@RequestParam String nombreC){
         return ipS.productByNameCategory(nombreC).stream().map(y->{
             ModelMapper m=new ModelMapper();
@@ -59,7 +59,7 @@ public class ProductController {
 
 
     @GetMapping("/buscarPorEmprendimiento")
-    @PreAuthorize("hasAnyAuthority('USUARIO', 'EMPRENDEDOR','ADMIN')")
+    @PreAuthorize("hasAnyAuthority('USUARIO', 'EMPRENDIMIENTO','ADMIN')")
     public List<ProductDTO> productosPorEmprendimiento(@RequestParam String nombreE){
         return ipS.productByNameEntrepreneurship(nombreE).stream().map(y->{
             ModelMapper m=new ModelMapper();
@@ -68,7 +68,7 @@ public class ProductController {
     }
 
     @GetMapping("/buscarPorNombreProducto")
-    @PreAuthorize("hasAnyAuthority('USUARIO', 'EMPRENDEDOR','ADMIN')")
+    @PreAuthorize("hasAnyAuthority('USUARIO', 'EMPRENDIMIENTO','ADMIN')")
     public List<ProductDTO> productosPorNombre(@RequestParam String nombreP){
         return ipS.productByName(nombreP).stream().map(y->{
             ModelMapper m=new ModelMapper();

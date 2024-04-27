@@ -31,7 +31,7 @@ public class PurchaseDetailController {
     }
 
     @GetMapping
-    @PreAuthorize("hasAnyAuthority('USUARIO','EMPRENDEDOR','ADMIN')")
+    @PreAuthorize("hasAnyAuthority('USUARIO','EMPRENDIMIENTO','ADMIN')")
     public List<PurchaseDetailDTO> list() {
         return pdS.list().stream().map(y -> {
             ModelMapper m = new ModelMapper();
@@ -40,18 +40,11 @@ public class PurchaseDetailController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyAuthority('USUARIO','EMPRENDEDOR')")
+    @PreAuthorize("hasAnyAuthority('USUARIO','EMPRENDIMIENTO')")
     public void delete(@PathVariable("id") int id) {
         pdS.delete(id);
     }
 
-    @PutMapping
-    @PreAuthorize("hasAnyAuthority('ADMIN')")
-    public void update(@RequestBody PurchaseDetailDTO PurchaseDetailDTO) {
-        ModelMapper m = new ModelMapper();
-        PurchaseDetail e = m.map(PurchaseDetailDTO, PurchaseDetail.class);
-        pdS.update(e);
-    }
 
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
@@ -62,7 +55,7 @@ public class PurchaseDetailController {
     }
 
     @GetMapping("/cantidaddecomprasporEmprendimiento")
-    @PreAuthorize("hasAnyAuthority('EMPRENDEDOR', 'ADMIN')")
+    @PreAuthorize("hasAnyAuthority('EMPRENDIMIENTO', 'ADMIN')")
     public List<PurchaseByEntrepreneurshipDTO> quantityPurchaseByEntrepreneurship(){
         List<String[]> filaLista=pdS.quantityPurchaseByEntrepreneurship();
         List<PurchaseByEntrepreneurshipDTO> dtoLista=new ArrayList<>();
@@ -76,7 +69,7 @@ public class PurchaseDetailController {
     }
 
     @GetMapping("/montodeventasporEmprendimiento")
-    @PreAuthorize("hasAnyAuthority('EMPRENDEDOR', 'ADMIN')")
+    @PreAuthorize("hasAnyAuthority('EMPRENDIMIENTO', 'ADMIN')")
     public List<TotalAmountByEntrepreneurshipDTO> monto(){
         List<String[]> filaLista= pdS.TotalAmountByEntrepreneurship();
         List<TotalAmountByEntrepreneurshipDTO> dtoLista=new ArrayList<>();
@@ -90,13 +83,13 @@ public class PurchaseDetailController {
     }
 
     @GetMapping("/SumaDeCantidadesPorFechaCompra")
-    @PreAuthorize("hasAnyAuthority('EMPRENDEDOR', 'ADMIN')")
+    @PreAuthorize("hasAnyAuthority('EMPRENDIMIENTO', 'ADMIN')")
     public int sumAmountByPurchaseDate(@RequestParam LocalDate fechaCompra){
         return pdS.sumTotalProductsByPurchaseDate(fechaCompra);
     }
 
     @GetMapping("/TotalProductosVendidosDescent")
-    @PreAuthorize("hasAnyAuthority('EMPRENDEDOR', 'ADMIN', 'USUARIO')")
+    @PreAuthorize("hasAnyAuthority('EMPRENDIMIENTO', 'ADMIN', 'USUARIO')")
     public List<Object[]> filterBestSellerDescent() {
         return pdS.filterBestSellerProductDescent();
     }

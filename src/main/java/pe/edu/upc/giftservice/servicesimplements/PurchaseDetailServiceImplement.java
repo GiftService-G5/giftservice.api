@@ -30,11 +30,6 @@ public class PurchaseDetailServiceImplement implements IPurchaseDetailService {
     }
 
     @Override
-    public void update(PurchaseDetail PurchaseDetail) {
-        pdR.save(PurchaseDetail);
-    }
-
-    @Override
     public void delete(int id) {
         pdR.deleteById(id);
     }

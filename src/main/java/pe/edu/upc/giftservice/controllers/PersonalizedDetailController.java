@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/PersonalizedDetailController")
-@PreAuthorize("hasAnyAuthority('EMPRENDEDOR')")
+@PreAuthorize("hasAnyAuthority('EMPRENDIMIENTO')")
 public class PersonalizedDetailController {
     @Autowired
     private IPersonalizedDetailService ipS;
@@ -25,7 +25,7 @@ public class PersonalizedDetailController {
     }
 
     @GetMapping
-    @PreAuthorize("hasAnyAuthority('EMPRENDEDOR','ADMIN', 'USUARIO')")
+    @PreAuthorize("hasAnyAuthority('EMPRENDIMIENTO','ADMIN', 'USUARIO')")
     public List<PersonalizedDetailDTO> listar(){
         return ipS.list().stream().map(y->{
             ModelMapper m = new ModelMapper();
