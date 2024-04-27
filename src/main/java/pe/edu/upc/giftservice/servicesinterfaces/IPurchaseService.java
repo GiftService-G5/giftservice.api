@@ -11,5 +11,7 @@ public interface IPurchaseService {
 
     public void delete(int id);
 
+    public List<String[]> QuantityByTypeDelivery ();
 
+    public List<String[]> RankingPaymentTypesUsed(Long entrepreneurships_id);
 }

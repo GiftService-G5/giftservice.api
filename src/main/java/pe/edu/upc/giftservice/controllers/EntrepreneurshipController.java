@@ -5,9 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.giftservice.dtos.EntrepreneurshipDTO;
+import pe.edu.upc.giftservice.dtos.PersonalizedEntrepreneurshipDTO;
+import pe.edu.upc.giftservice.dtos.QuantityReviewDTO;
 import pe.edu.upc.giftservice.entities.Entrepreneurship;
 import pe.edu.upc.giftservice.servicesinterfaces.IEntrepreneurshipService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -52,5 +55,35 @@ public class EntrepreneurshipController {
         ModelMapper m=new ModelMapper();
         Entrepreneurship e=iE.getById(id);
         return m.map(e, EntrepreneurshipDTO.class);
+    }
+
+    @GetMapping("/quantityReviewsByProduct/{id}")
+    public List<QuantityReviewDTO> quantityReviewsByProduct(
+            @PathVariable("id") Long id
+    ) {
+        List<QuantityReviewDTO> listDTO =  new ArrayList<>();
+        List<String[]> list = iE.quantityReviewsByProduct(id);
+        for (String[] hm : list) {
+            QuantityReviewDTO dto = new QuantityReviewDTO();
+            dto.setNameProduct(hm[0]);
+            dto.setQuantityReview(Integer.parseInt(hm[1]));
+            listDTO.add(dto);
+        }
+        return listDTO;
+    }
+
+    @GetMapping("/top3personalized/{id}")
+    public List<PersonalizedEntrepreneurshipDTO> findTop3PersonalizationsByEntrepreneurshipId(
+            @PathVariable("id") Long id
+    ) {
+        List<PersonalizedEntrepreneurshipDTO> listDTO =  new ArrayList<>();
+        List<String[]> list = iE.findTop3PersonalizationsByEntrepreneurshipId(id);
+        for (String[] hm : list) {
+            PersonalizedEntrepreneurshipDTO dto = new PersonalizedEntrepreneurshipDTO();
+            dto.setNamePersonalized(hm[0]);
+            dto.setQuantityPersonalized(Integer.parseInt(hm[1]));
+            listDTO.add(dto);
+        }
+        return listDTO;
     }
 }

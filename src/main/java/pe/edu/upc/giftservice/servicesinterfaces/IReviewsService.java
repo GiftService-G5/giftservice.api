@@ -12,4 +12,5 @@ public interface IReviewsService {
 
     public void delete(int id);
     public int TotalScoreByProduct(int product_id, int entrepreneurship_id);
+    public List<String[]> LowScoreProduct();
 }

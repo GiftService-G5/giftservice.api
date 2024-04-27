@@ -4,12 +4,14 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.giftservice.dtos.LowScoreOneToThree;
 import pe.edu.upc.giftservice.dtos.ProductDTO;
 import pe.edu.upc.giftservice.dtos.ReviewsDTO;
 import pe.edu.upc.giftservice.entities.Product;
 import pe.edu.upc.giftservice.entities.Reviews;
 import pe.edu.upc.giftservice.servicesinterfaces.IReviewsService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,5 +48,19 @@ public class ReviewsController {
     @GetMapping("/TotalPuntoPorProdductoyEmprendimiento")
     public int TotalPuntosPorProductoYEmprendimiento(@RequestParam int product_id, int entrepreneurship_id){
         return rS.TotalScoreByProduct(product_id,entrepreneurship_id);
+    }
+    @GetMapping("/ProductosConCalificaionBajaUnoATres")
+    public List<LowScoreOneToThree> ProductosConBajaCalificacion(){
+        List<String[]> filaLista= rS.LowScoreProduct();
+        List<LowScoreOneToThree> dtoLista=new ArrayList<>();
+        for(String [] columna:filaLista){
+            LowScoreOneToThree dto=new LowScoreOneToThree();
+            dto.setIdProducto(Integer.parseInt(columna[0]));
+            dto.setNameProduct(columna[1]);
+            dto.setDescriptionProduct(columna[2]);
+            dto.setLowScore(Double.parseDouble(columna[3]));
+            dtoLista.add(dto);
+        }
+        return dtoLista;
     }
 }

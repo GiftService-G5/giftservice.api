@@ -15,5 +15,5 @@ public interface IPurchaseDetailService {
     public List<String[]> TotalAmountByEntrepreneurship();
     public int sumTotalProductsByPurchaseDate(LocalDate fechaCompra);
     public List<Object[]> filterBestSellerProductDescent();
-
+    public List<String[]> RankingCategoryPurchase(Long entrepreneurships_id);
 }

@@ -10,4 +10,6 @@ public interface IEntrepreneurshipService {
     public Entrepreneurship getById(Long id);
     public void update(Entrepreneurship entrepreneurship);
     public void delete(Long id);
+    public List<String[]> quantityReviewsByProduct(Long id);
+    public List<String[]> findTop3PersonalizationsByEntrepreneurshipId(Long id);
 }

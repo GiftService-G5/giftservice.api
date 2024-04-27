@@ -59,4 +59,9 @@ public class PurchaseDetailServiceImplement implements IPurchaseDetailService {
         return pdR.filterBestSellerProductDescent();
     }
 
+    @Override
+    public List<String[]> RankingCategoryPurchase(Long entrepreneurships_id) {
+        return pdR.RankingCategoryPurchase(entrepreneurships_id);
+    }
+
 }

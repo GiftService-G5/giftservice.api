@@ -6,6 +6,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.giftservice.dtos.PurchaseByEntrepreneurshipDTO;
 import pe.edu.upc.giftservice.dtos.PurchaseDetailDTO;
+import pe.edu.upc.giftservice.dtos.RankingCategoryPurchaseDTO;
 import pe.edu.upc.giftservice.dtos.TotalAmountByEntrepreneurshipDTO;
 import pe.edu.upc.giftservice.entities.PurchaseDetail;
 import pe.edu.upc.giftservice.servicesinterfaces.IPurchaseDetailService;
@@ -98,5 +99,18 @@ public class PurchaseDetailController {
     @PreAuthorize("hasAnyAuthority('EMPRENDEDOR', 'ADMIN', 'USUARIO')")
     public List<Object[]> filterBestSellerDescent() {
         return pdS.filterBestSellerProductDescent();
+    }
+
+    @GetMapping("/Ranking_Category_purchase")
+    public List<RankingCategoryPurchaseDTO> RankingCategoryPurchase(@RequestParam  Long id){
+        List<String[]> filaLista= pdS.RankingCategoryPurchase(id);
+        List<RankingCategoryPurchaseDTO> dtoLista=new ArrayList<>();
+        for(String [] columna:filaLista){
+            RankingCategoryPurchaseDTO dto=new RankingCategoryPurchaseDTO();
+            dto.setNameCategory(columna[0]);
+            dto.setTotal(Integer.parseInt(columna[1]));
+            dtoLista.add(dto);
+        }
+        return dtoLista;
     }
 }

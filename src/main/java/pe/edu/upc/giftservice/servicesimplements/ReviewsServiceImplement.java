@@ -32,4 +32,9 @@ public class ReviewsServiceImplement implements IReviewsService {
     public int TotalScoreByProduct(int product_id, int entrepreneurship_id) {
         return rR.TotalScoreByProduct(product_id,entrepreneurship_id);
     }
+
+    @Override
+    public List<String[]> LowScoreProduct() {
+        return rR.LowScoreProduct();
+    }
 }

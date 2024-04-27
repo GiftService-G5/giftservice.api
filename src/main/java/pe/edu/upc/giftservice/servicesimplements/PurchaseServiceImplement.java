@@ -28,4 +28,14 @@ class PurchaseServiceImplement implements IPurchaseService {
         iP.deleteById(id);
     }
 
+    @Override
+    public List<String[]> QuantityByTypeDelivery() {
+        return iP.QuantityByTypeDelivery();
+    }
+
+    @Override
+    public List<String[]> RankingPaymentTypesUsed(Long entrepreneurships_id) {
+        return iP.RankingPaymentTypesUsed(entrepreneurships_id);
+    }
+
 }
