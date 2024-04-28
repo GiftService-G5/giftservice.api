@@ -1,6 +1,5 @@
 package pe.edu.upc.giftservice.repositories;
 
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -27,7 +26,7 @@ public interface IEntrepreneurshipRepository extends JpaRepository<Entrepreneurs
             "ORDER BY \n" +
             "    UsageCount DESC \n" +
             "LIMIT 3", nativeQuery = true)
-    List<String[]> findTop3PersonalizationsByEntrepreneurshipId(@Param("entrepreneurshipId") Long entrepreneurshipId, Pageable pageable);
+    List<String[]> findTop3PersonalizationsByEntrepreneurshipId(@Param("entrepreneurshipId") Long entrepreneurshipId);
 
     @Query(value ="SELECT\n" +
             "   p.name_product AS ProductName,\n" +

@@ -9,10 +9,18 @@ import java.util.List;
 
 @Repository
 public interface IConversationRepository extends JpaRepository<Conversation,Integer> {
-    @Query(value = "SELECT date_conversation,text_conversation,entrepreneurship_id,user_id FROM public.conversation \n" +
-            "WHERE  entrepreneurship_id = ?1 AND user_id = ?2 \n" +
-            "ORDER BY date_conversation ASC",nativeQuery = true)
-    public List<Conversation> findAllByUserEntrepre(int id_user,int id_entre);
-
-
+    @Query(value = "select\n" +
+            "    date_conversation,\n" +
+            "    text_conversation,\n" +
+            "    entrepreneurship_id,\n" +
+            "    user_id,\n" +
+            "\tid_conversation\n" +
+            "FROM\n" +
+            "    conversation\n" +
+            "WHERE\n" +
+            "    entrepreneurship_id = ?1\n" +
+            "    AND user_id =?2\n" +
+            "ORDER BY\n" +
+            "    date_conversation ASC",nativeQuery = true)
+    public List<Conversation> findAllByUserEntrepre(int id_entre, int id_user);
 }

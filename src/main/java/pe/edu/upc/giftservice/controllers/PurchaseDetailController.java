@@ -21,7 +21,7 @@ public class PurchaseDetailController {
     private IPurchaseDetailService pdS;
 
     @PostMapping
-    @PreAuthorize("hasAnyAuthority('USUARIO')")
+    @PreAuthorize("hasAnyAuthority('EMPRENDIMIENTO','ADMIN')")
     public void insertar(@RequestBody PurchaseDetailDTO PurchaseDetailDTO) {
         ModelMapper m = new ModelMapper();
         PurchaseDetail e = m.map(PurchaseDetailDTO, PurchaseDetail.class);
@@ -105,7 +105,7 @@ public class PurchaseDetailController {
         return dtoLista;
     }
     @PutMapping
-    public void modificar(@RequestBody PurchaseDetailDTO dto) {
+    public void update(@RequestBody PurchaseDetailDTO dto) {
         ModelMapper m = new ModelMapper();
         PurchaseDetail u = m.map(dto, PurchaseDetail.class);
         pdS.insert(u);

@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/tipo_de_entrega")
-@PreAuthorize("hasAnyAuthority('EMPRENDIMIENTO')")
+@PreAuthorize("hasAnyAuthority('EMPRENDIMIENTO','ADMIN')")
 public class DeliveryTypeController {
     @Autowired
     private IDeliveryTypeService iD;

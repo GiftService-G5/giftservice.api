@@ -2,6 +2,7 @@ package pe.edu.upc.giftservice.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.giftservice.dtos.CityDTO;
 import pe.edu.upc.giftservice.entities.City;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/cities")
+@PreAuthorize("hasAnyAuthority('EMPRENDIMIENTO','ADMIN','USUARIO')")
 public class CityController {
     @Autowired
     private ICityService icS;
@@ -35,7 +37,7 @@ public class CityController {
     public void eliminar(@PathVariable("id") Integer id){ icS.delete(id);}
 
     @PutMapping
-    public void modificar(@RequestBody CityDTO dto) {
+    public void update(@RequestBody CityDTO dto) {
         ModelMapper m = new ModelMapper();
         City u = m.map(dto, City.class);
         icS.insert(u);

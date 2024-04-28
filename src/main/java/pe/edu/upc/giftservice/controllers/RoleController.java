@@ -46,7 +46,7 @@ public class RoleController {
     }
 
     @PutMapping
-    public void modificar(@RequestBody RoleDTO dto) {
+    public void update(@RequestBody RoleDTO dto) {
         ModelMapper m = new ModelMapper();
         Role u = m.map(dto, Role.class);
         iR.insert(u);

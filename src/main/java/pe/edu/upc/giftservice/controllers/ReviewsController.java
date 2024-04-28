@@ -64,7 +64,7 @@ public class ReviewsController {
         return dtoLista;
     }
     @PutMapping
-    public void modificar(@RequestBody ReviewsDTO dto) {
+    public void update(@RequestBody ReviewsDTO dto) {
         ModelMapper m = new ModelMapper();
         Reviews u = m.map(dto, Reviews.class);
         rS.insert(u);

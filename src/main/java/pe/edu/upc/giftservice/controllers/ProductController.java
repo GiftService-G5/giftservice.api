@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/ProductController")
-@PreAuthorize("hasAnyAuthority('EMPRENDIMIENTO')")
+@PreAuthorize("hasAnyAuthority('EMPRENDIMIENTO','ADMIN')")
 public class ProductController {
     @Autowired
     private IProductService ipS;

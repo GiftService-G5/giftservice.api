@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/Conversation")
-@PreAuthorize("hasAnyAuthority('USUARIO','EMPRENDIMIENTO')")
+@PreAuthorize("hasAnyAuthority('EMPRENDIMIENTO','ADMIN','USUARIO')")
 public class ConversationController {
     @Autowired
     private IConversationService cS;
@@ -39,12 +39,11 @@ public class ConversationController {
 
 
     @GetMapping("/Mensajes")
-    public List<ConversationDTO> listByUserID(@RequestParam int id_user,@RequestParam int id_entre){
-        return  cS.findAllByUserEntrepre(id_user,id_entre).stream().map(y->{
+    public List<ConversationDTO> listByUserID(@RequestParam int entrepreneurship_id,@RequestParam int user_id){
+        return  cS.findAllByUserEntrepre(entrepreneurship_id, user_id).stream().map(y->{
             ModelMapper m = new ModelMapper();
             return m.map(y,ConversationDTO.class);
         }).collect(Collectors.toList());
     }
-
 
 }

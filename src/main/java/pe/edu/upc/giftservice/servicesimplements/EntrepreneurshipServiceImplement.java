@@ -1,8 +1,6 @@
 package pe.edu.upc.giftservice.servicesimplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.giftservice.entities.Entrepreneurship;
 import pe.edu.upc.giftservice.repositories.IEntrepreneurshipRepository;
@@ -47,7 +45,6 @@ public class EntrepreneurshipServiceImplement implements IEntrepreneurshipServic
 
     @Override
     public List<String[]> findTop3PersonalizationsByEntrepreneurshipId(Long id) {
-        Pageable pageable = PageRequest.of(0, 3);
-        return eR.findTop3PersonalizationsByEntrepreneurshipId(id, pageable);
+        return eR.findTop3PersonalizationsByEntrepreneurshipId(id);
     }
 }

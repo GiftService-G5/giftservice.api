@@ -41,7 +41,7 @@ public class UserController {
     public void eliminar(@PathVariable("id") Integer id){ uS.delete(id);}
 
     @PutMapping
-    public void modificar(@RequestBody UserDTO dto) {
+    public void update(@RequestBody UserDTO dto) {
         ModelMapper m = new ModelMapper();
         Users u = m.map(dto, Users.class);
         uS.insert(u);

@@ -74,7 +74,7 @@ public class EntrepreneurshipController {
     }
 
     @GetMapping("/top3personalized/{id}")
-    @PreAuthorize("hasAnyAuthority('EMPRENDIMIENTO', 'ADMIN','USUARIO')")
+    @PreAuthorize("hasAnyAuthority('EMPRENDIMIENTO','ADMIN','USUARIO')")
     public List<PersonalizedEntrepreneurshipDTO> findTop3PersonalizationsByEntrepreneurshipId(
             @PathVariable("id") Long id
     ) {

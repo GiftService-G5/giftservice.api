@@ -28,7 +28,7 @@ public class ReceiptTypeController {
     }
 
     @GetMapping
-    @PreAuthorize("hasAnyAuthority('USUARIO','ADMIN')")
+    @PreAuthorize("hasAnyAuthority('USUARIO','EMPRENDIMIENTO','ADMIN')")
     public List<ReceiptTypeDTO> list(){
         return  iR.list().stream().map(y->{
             ModelMapper m=new ModelMapper();
@@ -41,7 +41,7 @@ public class ReceiptTypeController {
     }
 
     @PutMapping
-    public void modificar(@RequestBody ReceiptTypeDTO dto) {
+    public void update(@RequestBody ReceiptTypeDTO dto) {
         ModelMapper m = new ModelMapper();
         ReceiptType u = m.map(dto, ReceiptType.class);
         iR.insert(u);

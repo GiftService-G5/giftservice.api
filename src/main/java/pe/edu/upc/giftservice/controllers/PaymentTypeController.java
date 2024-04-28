@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/tipo_pago")
-@PreAuthorize("hasAnyAuthority('USUARIO')")
+@PreAuthorize("hasAnyAuthority('ADMIN')")
 public class PaymentTypeController {
     @Autowired
     private IPaymentTypeService iP;
@@ -39,9 +39,11 @@ public class PaymentTypeController {
     }
 
     @PutMapping
-    public void modificar(@RequestBody PaymentTypeDTO dto) {
+    public void update(@RequestBody PaymentTypeDTO dto) {
         ModelMapper m = new ModelMapper();
         PaymentType u = m.map(dto, PaymentType.class);
         iP.insert(u);
     }
 }
+
+

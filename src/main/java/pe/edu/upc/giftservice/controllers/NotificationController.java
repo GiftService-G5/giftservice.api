@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/notification")
-@PreAuthorize("hasAnyAuthority('USUARIO','EMPRENDIMIENTO')")
+@PreAuthorize("hasAnyAuthority('USUARIO','EMPRENDIMIENTO','ADMIN')")
 public class NotificationController {
     @Autowired
     private INotificationService iN;
@@ -38,7 +38,7 @@ public class NotificationController {
     public void eliminar(@PathVariable("id") Integer id){ iN.delete(id);}
 
     @PutMapping
-    public void modificar(@RequestBody NotificationDTO dto) {
+    public void update(@RequestBody NotificationDTO dto) {
         ModelMapper m = new ModelMapper();
         Notification u = m.map(dto, Notification.class);
         iN.insert(u);

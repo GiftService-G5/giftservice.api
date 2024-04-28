@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/PersonalizedDetailController")
-@PreAuthorize("hasAnyAuthority('EMPRENDIMIENTO')")
+@PreAuthorize("hasAnyAuthority('EMPRENDIMIENTO','ADMIN')")
 public class PersonalizedDetailController {
     @Autowired
     private IPersonalizedDetailService ipS;
@@ -46,7 +46,7 @@ public class PersonalizedDetailController {
         return dto;
     }
     @PutMapping
-    public void modificar(@RequestBody PersonalizedDetailDTO dto) {
+    public void update(@RequestBody PersonalizedDetailDTO dto) {
         ModelMapper m = new ModelMapper();
         PersonalizedDetail u = m.map(dto, PersonalizedDetail.class);
         ipS.insert(u);

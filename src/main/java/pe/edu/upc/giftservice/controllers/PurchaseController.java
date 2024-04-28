@@ -42,7 +42,7 @@ public class PurchaseController {
         pS.delete(id);
     }
     @PutMapping
-    @PreAuthorize("hasAnyAuthority('EMPRENDIMIENTO', 'ADMIN')")
+    @PreAuthorize("hasAnyAuthority('USUARIO','EMPRENDIMIENTO', 'ADMIN')")
     public void update(@RequestBody PurchaseDTO purchaseDTO) {
         ModelMapper m = new ModelMapper();
         Purchase e = m.map(purchaseDTO, Purchase.class);

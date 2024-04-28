@@ -28,8 +28,9 @@ public class ConversationServiceImplement implements IConversationService {
     }
 
     @Override
-    public List<Conversation> findAllByUserEntrepre(int id_user,int id_entre) {
-        return cR.findAllByUserEntrepre(id_user,id_entre);
+    public List<Conversation> findAllByUserEntrepre(int id_entre, int id_user) {
+        return cR.findAllByUserEntrepre(id_entre, id_user);
     }
+
 
 }
